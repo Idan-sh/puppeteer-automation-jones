@@ -30,10 +30,12 @@ const puppeteer = require('puppeteer');
     const expectedText = "Thank You!";
     const actualText = await page.$eval('h1', element => element.textContent.trim());
 
-    if (actualText === expectedText) {
+    const thankYouDiv = await page.$('.thank-you'); // Also check that a div with the class of 'thank-you' is present
+
+    if (thankYouDiv && actualText === expectedText) {
         console.log("Successfully reached the thank you page!");
     } else {
-        console.log("Could not reach the thank you page...");
+        console.log("Failed to reach the thank you page...");
     }
 
     // Take a screenshot of the reached page
