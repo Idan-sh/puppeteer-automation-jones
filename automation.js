@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 
 (async () => {
     // Setup Puppeteer 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch(); // For easy debugging use options of: {slowMo: 100, headless: false}
     const page = await browser.newPage();
 
     // First step: Open the form site
@@ -20,6 +20,25 @@ const puppeteer = require('puppeteer');
     // Third step: Open the form site
     await page.screenshot({path: 'screenshot.png'});
 
-    // Cleaning up 
+    // Fourth step: Click the submit button
+    await page.click('.primary.button');
+
+    // Fifth step: Ensure the thank you page has been reached
+    await page.waitForNavigation({ waitUntil: 'networkidle0' }); // Wait for the redirect to finish
+
+    // Compare the <h1> title of the reached page to the expected text
+    const expectedText = "Thank You!";
+    const actualText = await page.$eval('h1', element => element.textContent.trim());
+
+    if (actualText === expectedText) {
+        console.log("Successfully reached the thank you page!");
+    } else {
+        console.log("Could not reach the thank you page...");
+    }
+
+    // Take a screenshot of the reached page
+    await page.screenshot({path: 'screenshot-after-click.png'});
+
+    // Last step: Cleaning up 
     await browser.close();
 })();
