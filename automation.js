@@ -1,8 +1,8 @@
-const puppeteer = require('puppeteer');
+import { launch } from 'puppeteer';
 
 (async () => {
     // Setup Puppeteer 
-    const browser = await puppeteer.launch(); // For easy debugging use options of: {slowMo: 100, headless: false}
+    const browser = await launch(); // For easy debugging use options of: {slowMo: 100, headless: false}
     const page = await browser.newPage();
 
     // First step: Open the form site
