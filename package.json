@@ -1,0 +1,15 @@
+{
+  "name": "puppeteer-automation-jones",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node automation.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "puppeteer": "^23.8.0"
+  }
+}
