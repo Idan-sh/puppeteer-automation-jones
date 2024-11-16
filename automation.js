@@ -2,10 +2,10 @@ import { launch } from 'puppeteer';
 
 (async () => {
     // Setup Puppeteer 
-    const browser = await launch(); // For easy debugging use options of: {slowMo: 100, headless: false}
+    const browser = await launch(); // For easy debugging use these options: {slowMo: 100, headless: false}
     const page = await browser.newPage();
 
-    // First step: Open the form site
+    // First step: Open the form website
     await page.goto('https://testsite.getjones.com/ExampleForm/');
 
     // Second step: Fill the form
@@ -17,7 +17,7 @@ import { launch } from 'puppeteer';
     // Bonus step: Change the number of employees
     await page.select('#employees', '51-500');
 
-    // Third step: Open the form site
+    // Third step: Screenshot the form website after finished filling input (before submitting)
     await page.screenshot({path: 'screenshot.png'});
 
     // Fourth step: Click the submit button
@@ -32,6 +32,7 @@ import { launch } from 'puppeteer';
 
     const thankYouDiv = await page.$('.thank-you'); // Also check that a div with the class of 'thank-you' is present
 
+    // Check if the reached page is the thank you page
     if (thankYouDiv && actualText === expectedText) {
         console.log("Successfully reached the thank you page!");
     } else {
