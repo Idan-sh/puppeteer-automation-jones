@@ -1,5 +1,5 @@
 <p align="center">
-    <strong>Puppeteer Automation - Jones</strong><br>
+    <strong>Puppeteer Automation</strong><br>
     <img width="50%" align="center" alt="image" src="https://github.com/user-attachments/assets/4df1792b-ef63-4c4f-bfd0-4f9e1013f2f9">   
 </p>
 
